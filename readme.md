@@ -118,9 +118,9 @@ npm install
 yarn install
 ```
 
-3. Создать файл .env.local и добавить переменные окружения
+3. Создать файл .env.local и добавить переменные окружения (3001 порт дефолтный для бэка)
 ```env
-NEXT_PUBLIC_API_URL=http://localhost:5000
+NEXT_PUBLIC_API_URL=http://localhost:3001 
 ```
 
 4. Запустить приложение
@@ -146,14 +146,8 @@ npm install
 yarn install
 ```
 
-3. Создать файл .env и добавить переменные окружения
-```env
-DATABASE_URL="postgresql://user:password@localhost:5432/donereat"
-PORT=5000
-CORS_ORIGIN=http://localhost:3000
-```
 
-4. Настроить базу данных
+3. Настроить базу данных
 ```bash
 # Создать базу данных
 npx prisma db push
@@ -162,14 +156,14 @@ npx prisma db push
 npm run seed
 ```
 
-5. Запустить сервер
+4. Запустить сервер
 ```bash
 npm run dev
 # или
 yarn dev
 ```
 
-Backend API будет доступен по адресу `http://localhost:5000`
+Backend API будет доступен по адресу `http://localhost:3001`
 
 ### Доступные команды
 
@@ -260,7 +254,6 @@ enum OrderStatus {
 }
 ```
 
-## Лицензия
-MIT
+
 
 
