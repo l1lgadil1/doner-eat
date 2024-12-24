@@ -3,23 +3,13 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { Order } from "@/types/order";
+import { Order, OrderStatus } from "@/types/order";
 import { ordersApi } from "@/lib/api/orders";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { OrderStatusBadge } from "@/components/admin/OrderStatusBadge";
+import { OrderStatusButtons } from "@/components/orders/OrderStatusButtons";
 import { Loader2, ArrowLeft } from "lucide-react";
 import { toast } from "react-hot-toast";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-
-const ORDER_STATUSES = [
-  { value: 'PENDING', label: 'В ожидании' },
-  { value: 'CONFIRMED', label: 'Подтвержден' },
-  { value: 'PREPARING', label: 'Готовится' },
-  { value: 'READY', label: 'Готов' },
-  { value: 'COMPLETED', label: 'Завершен' },
-  { value: 'CANCELLED', label: 'Отменен' },
-] as const;
 
 export default function OrderDetailsPage() {
   const params = useParams();
@@ -43,7 +33,7 @@ export default function OrderDetailsPage() {
     fetchOrder();
   }, [params.id]);
 
-  const handleStatusChange = async (newStatus: string) => {
+  const handleStatusChange = async (newStatus: OrderStatus) => {
     if (!order) return;
     
     setIsUpdating(true);
@@ -87,24 +77,11 @@ export default function OrderDetailsPage() {
         </Button>
         <div className="flex items-center gap-4">
           <span className="text-sm text-gray-500">Статус:</span>
-          <Select
-            value={order.status}
-            onValueChange={handleStatusChange}
-            disabled={isUpdating}
-          >
-            <SelectTrigger className="w-[180px]">
-              <SelectValue>
-                <OrderStatusBadge status={order.status} />
-              </SelectValue>
-            </SelectTrigger>
-            <SelectContent>
-              {ORDER_STATUSES.map(status => (
-                <SelectItem key={status.value} value={status.value}>
-                  {status.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <OrderStatusButtons
+            currentStatus={order.status}
+            onStatusChange={handleStatusChange}
+            isUpdating={isUpdating}
+          />
         </div>
       </div>
 
