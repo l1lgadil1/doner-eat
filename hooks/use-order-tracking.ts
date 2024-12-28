@@ -36,8 +36,9 @@ export const useOrderTracking = ({ orderId }: UseOrderTrackingProps): UseOrderTr
     };
 
     const connectWebSocket = () => {
-      ws = new WebSocket(`ws://localhost:3001`);
-      
+      const wsUrl = process.env.NEXT_PUBLIC_API_URL?.replace('http://', 'ws://') || 'ws://172.20.10.2:3001';
+      ws = new WebSocket(wsUrl);
+
       ws.onopen = () => {
         ws.send(JSON.stringify({
           type: 'subscribe',
@@ -56,13 +57,21 @@ export const useOrderTracking = ({ orderId }: UseOrderTrackingProps): UseOrderTr
         console.error('WebSocket error');
         setError("Ошибка подключения");
       };
+
+      ws.onclose = () => {
+        console.log('WebSocket connection closed');
+        // Attempt to reconnect after a delay
+        setTimeout(connectWebSocket, 3000);
+      };
     };
 
     fetchOrder();
     connectWebSocket();
 
     return () => {
-      if (ws) ws.close();
+      if (ws) {
+        ws.close();
+      }
     };
   }, [orderId, router]);
 
@@ -71,4 +80,4 @@ export const useOrderTracking = ({ orderId }: UseOrderTrackingProps): UseOrderTr
     error,
     isLoading
   };
-}; 
+};

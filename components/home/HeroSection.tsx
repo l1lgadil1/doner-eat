@@ -49,7 +49,7 @@ export function HeroSection() {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5, duration: 1 }}
                   className="text-xl md:text-2xl mb-8 max-w-2xl drop-shadow-md">
-                  Самая вкусная шаурма в Центральной Азии
+                  Самый вкусный донер в Алматинском стиле 
               </motion.p>
 
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>

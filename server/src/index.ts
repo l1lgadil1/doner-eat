@@ -5,6 +5,9 @@ import menuRouter from "./routes/menu";
 import orderRouter, { setWebSocketService } from "./routes/orders";
 import WebSocketService from "./websocket";
 import { PrismaClient } from "@prisma/client";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
 const server = http.createServer(app);
@@ -91,13 +94,16 @@ async function checkDatabaseConnection() {
   }
 }
 
-const PORT = process.env.PORT || 3001;
+const PORT = Number(process.env.PORT) || 3001;
+const HOST = process.env.HOST || '0.0.0.0';
 
 checkDatabaseConnection().then(() => {
-  server.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+  server.listen(PORT, HOST, () => {
+    console.log(`Server is running on http://${HOST}:${PORT}`);
   });
 }).catch(error => {
   console.error('Server startup failed:', error);
   process.exit(1);
 });
+
+export default app;

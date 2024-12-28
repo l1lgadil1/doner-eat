@@ -2,7 +2,7 @@ import axios from 'axios';
 import { CartItem } from '@/types/cart';
 import { MenuItem } from '@/types/order';
 
-const API_URL = 'http://localhost:3001';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
 export const menuApi = {
   getMenuItems: async (): Promise<CartItem[]> => {

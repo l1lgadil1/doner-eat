@@ -35,10 +35,10 @@ export function MenuSection() {
         <FadeInWhenVisible>
           <h2 className="text-4xl font-bold text-center mb-4">Наше Меню</h2>
           <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            Попробуйте аутентичные турецкие вкусы с нашей коллекцией свежеприготовленных донеров
+            Попробуйте вкусы с нашей коллекцией свежеприготовленных донеров
           </p>
         </FadeInWhenVisible>
-        
+
         {error ? (
           <p className="text-center text-red-500">{error}</p>
         ) : menuItems.length === 0 ? (
@@ -46,16 +46,16 @@ export function MenuSection() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {menuItems.map((item) => (
-              <MenuItemCard 
-                key={item.id} 
-                item={item} 
-                onOrder={handleOrderClick} 
+              <MenuItemCard
+                key={item.id}
+                item={item}
+                onOrder={handleOrderClick}
               />
             ))}
           </div>
         )}
       </div>
-      
+
       {selectedItem && (
         <CheckoutModal
           isOpen={isModalOpen}

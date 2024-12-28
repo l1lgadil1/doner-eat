@@ -34,10 +34,10 @@ export function GallerySection() {
         <FadeInWhenVisible>
           <h2 className="text-4xl font-bold text-center mb-4 text-gray-900">Наши Специальности</h2>
           <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            Откройте для себя наш восхитительный выбор аутентичных турецких донеров
+            Откройте для себя наш восхитительный выбор алматинских донеров
           </p>
         </FadeInWhenVisible>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {images.map((image, index) => (
             <FadeInWhenVisible key={index}>
@@ -68,7 +68,7 @@ export function GallerySection() {
         </div>
 
         {/* <FadeInWhenVisible>
-          <motion.div 
+          <motion.div
             className="text-center mt-12"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

@@ -14,7 +14,7 @@ const qualities = [
   {
     icon: UtensilsCrossed,
     title: "Традиционный Рецепт",
-    description: "Аутентичная турецкая смесь специй"
+    description: "Аутентичная смесь специй"
   },
   {
     icon: ThumbsUp,
@@ -42,7 +42,7 @@ export function QualitySection() {
             <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-12">
               Качество в Каждом Кусочке
             </h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-white">
               {qualities.map((quality, index) => (
                 <motion.div
@@ -61,8 +61,8 @@ export function QualitySection() {
 
             <div className="mt-12 text-center">
               <p className="text-lg text-gray-200 max-w-2xl mx-auto">
-                Наше стремление к качеству начинается с выбора лучших сортов мяса, 
-                маринования в нашей секретной смеси традиционных турецких специй и 
+                Наше стремление к качеству начинается с выбора лучших сортов мяса,
+                маринования в нашей секретной смеси традиционных специй и
                 медленного приготовления до совершенства на вертикальном гриле.
               </p>
             </div>
@@ -71,4 +71,4 @@ export function QualitySection() {
       </div>
     </Parallax>
   );
-} 
+}
